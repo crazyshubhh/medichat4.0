@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | MediChat</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #E3F2FD;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.2);
+        }
+        h2 {
+            color: #0077b6;
+        }
+        .donation-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .donation-options label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+            color: #005792;
+        }
+        .donate-button {
+            background: #0077b6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .donate-button:hover {
+            background: #005792;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Support Those in Need</h2>
+        <p>Your donations help provide medical aid, clothes, and essential items to those in need.</p>
+        
+        <form>
+            <div class="donation-options">
+                <label><input type="radio" name="donation" value="money"> Money</label>
+                <label><input type="radio" name="donation" value="clothes"> Clothes</label>
+                <label><input type="radio" name="donation" value="food"> Food</label>
+                <label><input type="radio" name="donation" value="medical"> Medical Supplies</label>
+            </div>
+            <button type="submit" class="donate-button">Donate Now</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealthBot - Chatbot</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(120deg, #89f7fe, #d5f4f9);
+        color: #333;
+      }
+
+      header {
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+        color: white;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+      }
+
+      main {
+        padding: 20px;
+        max-width: 600px;
+        margin: 20px auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      #chat-output {
+        min-height: 300px;
+        max-height: 500px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        background: #f9f9f9;
+      }
+
+      .message {
+        display: flex;
+        align-items: flex-start;
+        margin: 10px 0;
+      }
+
+      .bot-message,
+      .user-message {
+        display: flex;
+        align-items: center;
+      }
+
+      .bot-message .avatar,
+      .user-message .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .bot-message .text,
+      .user-message .text {
+        background: #f1f1f1;
+        padding: 10px 15px;
+        border-radius: 10px;
+      }
+
+      .bot-message .text {
+        background: #d1e7ff;
+      }
+
+      .user-message .text {
+        background: #bfffd0;
+      }
+
+      #chat-input {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+
+      #chat-input input {
+        flex-grow: 1;
+      }
+
+      button {
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 1em;
+      }
+
+      button:hover {
+        background: linear-gradient(90deg, #00f2fe, #4facfe);
+      }
+
+      footer {
+        text-align: center;
+        padding: 10px;
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>HealthBot</h1>
+    </header>
+    <main>
+      <h2>Chatbot Suggestions</h2>
+      <div id="chat-output"></div>
+      <div id="chat-input">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Ask about your health..."
+        />
+        <button id="send-btn">Send</button>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; 2025 HealthBot. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const chatOutput = document.getElementById("chat-output");
+      const userInput = document.getElementById("user-input");
+      const sendButton = document.getElementById("send-btn");
+
+      // Retrieve user details from localStorage
+      const userName = localStorage.getItem("userName") || "User";
+
+      // Predefined disease responses
+      const diseaseResponses = {
+        fever:
+          "It seems you have a fever. Stay hydrated, rest, and consider taking paracetamol. If it persists, see a doctor.",
+        cold: "For a cold, drink warm fluids, rest, and consider over-the-counter decongestants. Stay warm!",
+        headache:
+          "For headaches, drink plenty of water, rest in a quiet place, and consider taking a pain reliever like ibuprofen.",
+        stomachache:
+          "For stomach pain, avoid heavy meals, drink ginger tea, and consider antacids if needed.",
+        cough:
+          "If you have a cough, drink warm fluids, use honey with tea, and avoid cold drinks. Consult a doctor if severe.",
+          "diarrhea": "For diarrhea, stay hydrated with ORS or clear fluids. Avoid spicy and greasy foods. Take probiotics and consult a doctor if it persists.",
+    "constipation": "For constipation, increase fiber intake, drink plenty of water, and consider mild laxatives like polyethylene glycol.",
+    "acid reflux": "For acid reflux, avoid spicy and fatty foods, eat smaller meals, and consider antacids like omeprazole.",
+    "sore throat": "For a sore throat, gargle with warm salt water, drink warm fluids, and use throat lozenges. See a doctor if it worsens.",
+    "allergy": "For allergies, avoid known triggers and consider antihistamines like loratadine. Seek medical help if symptoms are severe.",
+    "hypertension": "For high blood pressure, reduce salt intake, avoid stress, and take prescribed medications like amlodipine.",
+    "diabetes": "For diabetes, monitor blood sugar, follow a healthy diet, exercise regularly, and take prescribed medication like metformin.",
+    "asthma": "For asthma, avoid triggers, use your inhaler as prescribed, and see a doctor for regular checkups.",
+    "back pain": "For back pain, practice good posture, avoid heavy lifting, and use over-the-counter pain relievers like ibuprofen.",
+    "arthritis": "For arthritis, stay active, use hot or cold compresses, and consider anti-inflammatory medications like naproxen.",
+    "anemia": "For anemia, eat iron-rich foods like spinach and red meat. Consider taking iron supplements as prescribed by a doctor.",
+    "skin rash": "For rashes, avoid irritants, use antihistamine creams, and consult a dermatologist if it persists.",
+    "sinusitis": "For sinusitis, use steam inhalation, saline nasal sprays, and over-the-counter decongestants like pseudoephedrine.",
+    "migraine": "For migraines, rest in a dark and quiet room, drink plenty of fluids, and take medications like sumatriptan if prescribed.",
+    "urinary tract infection": "For UTIs, drink plenty of water, avoid caffeine, and consult a doctor for antibiotics like nitrofurantoin.",
+    "eczema": "For eczema, moisturize regularly, avoid triggers, and use topical corticosteroids if prescribed.",
+    "pneumonia": "For pneumonia, rest, drink fluids, and take prescribed antibiotics or antivirals. Consult a doctor immediately.",
+    "bronchitis": "For bronchitis, drink warm fluids, avoid smoking, and consider cough suppressants if needed.",
+    "conjunctivitis": "For conjunctivitis, use artificial tears, avoid touching your eyes, and consult a doctor for antibiotic eye drops if bacterial.",
+    "vertigo": "For vertigo, avoid sudden movements, rest, and consider medications like meclizine if prescribed.",
+    "hypothyroidism": "For hypothyroidism, take prescribed thyroid hormone replacement therapy like levothyroxine.",
+    "hyperthyroidism": "For hyperthyroidism, avoid caffeine, take prescribed antithyroid medications, and consult your doctor regularly.",
+    "chickenpox": "For chickenpox, rest, avoid scratching, and use calamine lotion or antihistamines for relief.",
+    "measles": "For measles, stay hydrated, rest, and use fever reducers like acetaminophen.",
+    "flu": "For the flu, rest, drink plenty of fluids, and take antiviral medications like oseltamivir if prescribed.",
+    "malaria": "For malaria, take prescribed antimalarial drugs and prevent mosquito bites using nets and repellents.",
+    "dengue": "For dengue, stay hydrated, rest, and avoid aspirin. Consult a doctor for monitoring.",
+    "tuberculosis": "For tuberculosis, take the full course of prescribed antibiotics like rifampin and consult a specialist.",
+    "jaundice": "For jaundice, rest, avoid fatty foods, and treat the underlying cause as per a doctor’s recommendation.",
+    "typhoid": "For typhoid, take prescribed antibiotics, stay hydrated, and avoid raw or contaminated food.",
+    "appendicitis": "For appendicitis, seek immediate medical attention, as it often requires surgery.",
+    "gastroenteritis": "For gastroenteritis, stay hydrated, eat light meals, and use probiotics for faster recovery.",
+    "dehydration": "For dehydration, drink ORS or electrolyte solutions and avoid caffeine or alcohol.",
+    "insomnia": "For insomnia, follow a consistent sleep schedule, avoid screens before bed, and consider melatonin if recommended.",
+    "obesity": "For obesity, follow a balanced diet, exercise regularly, and consult a dietitian for personalized advice.",
+    "anxiety": "For anxiety, practice relaxation techniques, avoid caffeine, and consult a doctor for therapy or medications like SSRIs.",
+    "depression": "For depression, talk to a therapist, exercise regularly, and consider antidepressants like sertraline if prescribed.",
+    "vitamin D deficiency": "For vitamin D deficiency, get sunlight exposure, eat fortified foods, and take supplements as recommended.",
+    "scabies": "For scabies, use prescribed creams like permethrin and wash clothes and bedding thoroughly.",
+    "ringworm": "For ringworm, use antifungal creams like clotrimazole and keep the affected area clean and dry.",
+    "toothache": "For toothaches, rinse with warm salt water, use clove oil for relief, and visit a dentist for further treatment.",
+    "ear infection": "For ear infections, apply warm compresses, use prescribed ear drops, and consult a doctor for antibiotics if needed.",
+    "frostbite": "For frostbite, warm the affected area gently, avoid direct heat, and seek medical attention if severe.",
+    "sunburn": "For sunburn, apply aloe vera gel, take cool showers, and use pain relievers like ibuprofen if needed."
+        // Add more diseases and corresponding responses here
+      };
+
+      // Display a welcome message
+      function displayWelcomeMessage() {
+        addTypingIndicator("bot");
+        setTimeout(() => {
+          removeTypingIndicator();
+          const message = `Hello ${userName}! How are you feeling today? You can ask me about your health issues.`;
+          addMessage("bot", message);
+        }, 1500);
+      }
+
+      // Add typing indicator
+      function addTypingIndicator(sender) {
+        const typingDiv = document.createElement("div");
+        typingDiv.classList.add(
+          sender === "bot" ? "bot-message" : "user-message",
+          "typing"
+        );
+        typingDiv.innerHTML = `
+                <img class="avatar" src="https://e7.pngegg.com/pngimages/498/917/png-clipart-computer-icons-desktop-chatbot-icon-blue-angle.png" alt="Bot">
+                <div class="text">Typing...</div>
+            `;
+        chatOutput.appendChild(typingDiv);
+        chatOutput.scrollTop = chatOutput.scrollHeight;
+      }
+
+      // Remove typing indicator
+      function removeTypingIndicator() {
+        const typingDiv = chatOutput.querySelector(".typing");
+        if (typingDiv) typingDiv.remove();
+      }
+
+      // Add messages to the chat output
+      function addMessage(sender, message) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add(
+          sender === "bot" ? "bot-message" : "user-message",
+          "message"
+        );
+        messageDiv.innerHTML = `
+                <img class="avatar" src="${
+                  sender === "bot"
+                    ? "https://e7.pngegg.com/pngimages/498/917/png-clipart-computer-icons-desktop-chatbot-icon-blue-angle-thumbnail.png"
+                    : "https://images.rawpixel.com/image_png_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA0L3BmLWljb240LWppcjIwNjItcG9yLWwtam9iNzg4LnBuZw.png"
+                }" alt="${sender}">
+                <div class="text">${message}</div>
+            `;
+        chatOutput.appendChild(messageDiv);
+        chatOutput.scrollTop = chatOutput.scrollHeight;
+      }
+
+      // Extract keywords from user input
+      function extractKeywords(input) {
+        const keywords = Object.keys(diseaseResponses);
+        for (const keyword of keywords) {
+          if (input.includes(keyword)) {
+            return keyword;
+          }
+        }
+        return null;
+      }
+
+      // Handle user input
+      sendButton.addEventListener("click", () => {
+        const message = userInput.value.trim().toLowerCase();
+        if (message) {
+          addMessage("user", message);
+          userInput.value = "";
+          addTypingIndicator("bot");
+          setTimeout(() => {
+            removeTypingIndicator();
+            const keyword = extractKeywords(message);
+            if (keyword) {
+              addMessage("bot", diseaseResponses[keyword]);
+            } else {
+              addMessage(
+                "bot",
+                "I'm sorry, I don't have information on that issue. Please consult a doctor and provide more relivent info."
+              );
+              
+            }
+          }, 1500);
+        }
+      });
+
+      // Display the welcome message on page load
+      displayWelcomeMessage();
+    </script>
+  </body>
+</html>

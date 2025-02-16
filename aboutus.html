@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Our Team</title>
+  <style>
+    /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 30px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #0077b6;
+    text-shadow: 1px 1px 3px #00000020;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #00b4d8;
+  }
+  
+  .name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0077b6;
+    margin-bottom: 5px;
+  }
+  
+  .role {
+    font-size: 1.2rem;
+    color: #0096c7;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .card:hover .name {
+    color: #023e8a;
+  }
+  
+  .card:hover .role {
+    color: #0077b6;
+  }
+  </style>
+  
+  <script>
+    console.log("Welcome to the MediChat About Us page!");
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Meet Our Team</h1>
+    <div class="team-grid">
+      <div class="card">
+
+        <img src="img.PNG" alt="Shubh" class="avatar">
+        <h2 class="name">Shubh</h2>
+        <p class="role">Team Leader</p>
+        <p class="description">Shubh leads the team with unmatched vision, coordination, and technical brilliance, ensuring the project runs smoothly handle backend frontend both  designer.</p>
+      </div>
+      <div class="card">
+        <img src="aman.jpg" alt="Alice" class="avatar">
+        <h2 class="name">Aman</h2>
+        <p class="role">Backend Developer</p>
+        <p class="description">Aman manages the server-side logic and ensures the backend is as robust as possible working profreshtional struchture optimizer.</p>
+      </div>
+      <div class="card">
+        <img src="5..jpg" alt="Bob" class="avatar">
+        <h2 class="name">Aakash</h2>
+        <p class="role">Frontend Styler</p>
+        <p class="description">Aakash creates sleek, responsive interfaces, ensuring an excellent user experience.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/150" alt="Eve" class="avatar">
+        <h2 class="name">Avdesh kumar</h2>
+        <p class="role">Tester or Debuger</p>
+        <p class="description">Avdesh kumar  ensures the platform is bug-free and works flawlessly under all conditions.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    console.log("All team cards are displayed!");
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Services</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f1f8f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .emergency-title {
+      font-size: 2rem;
+      color: #d9534f;
+      font-weight: bold;
+    }
+
+    .emergency-info {
+      margin: 20px 0;
+      font-size: 1.2rem;
+      color: #5a6268;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .emergency-btn {
+      background-color: #ff5c5c;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .emergency-btn:hover {
+      background-color: #ff3d3d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="emergency-title">Emergency Services</h1>
+
+    <!-- Ambulance Number -->
+    <div class="emergency-info">
+      <strong>Ambulance Number:</strong> 112 (India) / 911 (USA)
+    </div>
+
+    <!-- Map Section -->
+    <h3>Find Nearby Hospitals</h3>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d55985.68155796209!2d77.08172101389161!3d28.71640499771097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1737870241769!5m2!1sen!2sin" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <!-- Emergency Button -->
+    <button class="emergency-btn" onclick="alert('Calling Emergency...')" aria-label="Call Emergency Services">
+      Call Emergency
+    </button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Reminder Chart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #cfeefc;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .patient-info {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .patient-info p {
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+        .patient-info span {
+            font-weight: bold;
+        }
+        table {
+            
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        .timer {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 1.5em;
+        }
+        .button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .input-form {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Medical Reminder Chart</div>
+    
+    <div class="input-form" id="inputForm">
+        <h2>Enter Patient Details</h2>
+        <label>Patient's Name: <input type="text" id="patientName"></label><br><br>
+        <label>Age: <input type="number" id="patientAge"></label><br><br>
+        <label>Gender: <input type="text" id="patientGender"></label><br><br>
+        <label>Known Allergies: <input type="text" id="patientAllergies"></label><br><br>
+        <button class="button" onclick="showMainPage()">Submit</button>
+    </div>
+    
+    <div class="container" id="mainPage">
+        <div class="patient-info">
+            <p><span>Patient's Name:</span> <span id="displayName"></span></p>
+            <p><span>Age:</span> <span id="displayAge"></span></p>
+            <p><span>Gender:</span> <span id="displayGender"></span></p>
+            <p><span>Known Allergies:</span> <span id="displayAllergies"></span></p>
+        </div>
+        
+        <table contenteditable="true">
+            <tr>
+                <th>Name of Medicine</th>
+                <th>Dose</th>
+                <th>When to take</th>
+                <th>With or without food</th>
+                <th>Side Effects</th>
+            </tr>
+            <tr>
+                <td>Omeprazole</td>
+                <td>20 mg</td>
+                <td>9:00 AM, 12:00 AM, 5:00 PM</td>
+                <td>Without food</td>
+                <td>None</td>
+            </tr>
+        </table>
+        
+        <div class="timer-section">
+            <h2>Set Medicine Reminder</h2>
+            <label for="timeInput">Select Time:</label>
+            <input type="time" id="timeInput">
+            <button class="button" onclick="setReminder()">Set Reminder</button>
+            <div class="timer" id="timer">No Reminder Set</div>
+        </div>
+    </div>
+    
+    <script>
+        function showMainPage() {
+            document.getElementById("displayName").innerText = document.getElementById("patientName").value;
+            document.getElementById("displayAge").innerText = document.getElementById("patientAge").value;
+            document.getElementById("displayGender").innerText = document.getElementById("patientGender").value;
+            document.getElementById("displayAllergies").innerText = document.getElementById("patientAllergies").value;
+            document.getElementById("inputForm").style.display = "none";
+            document.getElementById("mainPage").style.display = "block";
+        }
+
+        let alarmSound = new Audio('alarm.mp3');
+        let reminderTime = null;
+
+        function setReminder() {
+            let inputTime = document.getElementById("timeInput").value;
+            if (!inputTime) {
+                alert("Please select a time");
+                return;
+            }
+            reminderTime = inputTime;
+            document.getElementById("timer").innerText = `Reminder set for ${reminderTime}`;
+        }
+
+        function checkTime() {
+            let now = new Date();
+            let currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
+            if (reminderTime === currentTime) {
+                alarmSound.play();
+                alert("Time to take your medicine!");
+                reminderTime = null;
+            }
+        }
+        setInterval(checkTime, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!-- prescription.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #cfeefc;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        .details {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .details p {
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+        .download-btn {
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+        .download-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medichat</h1>
+        <h2>Prescription Details</h2>
+        <div class="details">
+            <p><strong>Name:</strong> <span id="name"></span></p>
+            <p><strong>Age:</strong> <span id="age"></span></p>
+            <p><strong>Treatment:</strong> <span id="treatment"></span></p>
+            <p><strong>Medication:</strong> <span id="medication"></span></p>
+            <p><strong>Date Signed:</strong> <span id="date"></span></p>
+        </div>
+        <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+    </div>
+    <script>
+        window.onload = function () {
+            const data = JSON.parse(localStorage.getItem("prescriptionData"));
+            if (data) {
+                document.getElementById("name").innerText = data.name || "N/A";
+                document.getElementById("age").innerText = data.age || "N/A";
+                document.getElementById("treatment").innerText = data.treatment || "N/A";
+                document.getElementById("medication").innerText = data.medication || "N/A";
+                document.getElementById("date").innerText = data.date || "N/A";
+            }
+        }
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFont("helvetica");
+            doc.setFontSize(16);
+            doc.text("Medichat Prescription", 20, 20);
+            doc.setFontSize(12);
+            doc.text(`Name: ${document.getElementById("name").innerText}`, 20, 40);
+            doc.text(`Age: ${document.getElementById("age").innerText}`, 20, 50);
+            doc.text(`Treatment: ${document.getElementById("treatment").innerText}`, 20, 60);
+            doc.text(`Medication: ${document.getElementById("medication").innerText}`, 20, 70);
+            doc.text(`Date Signed: ${document.getElementById("date").innerText}`, 20, 80);
+            
+            doc.save(`Prescription_${document.getElementById("name").innerText}.pdf`);
+        }
+    </script>
+</body>
+</html>

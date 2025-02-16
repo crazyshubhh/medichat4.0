@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Doctors | MediChat</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #E3F2FD; /* Light blue background */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2em;
+            color: #0077b6; /* MediChat theme color */
+            margin-top: 20px;
+        }
+        #doctor-info-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .doctor-card {
+            background: #ffffff;
+            width: 350px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.2);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid #0077b6;
+        }
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 119, 182, 0.3);
+        }
+        .doctor-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid #0077b6;
+        }
+        .doctor-info {
+            text-align: left;
+            padding-left: 15px;
+        }
+        .doctor-info h3 {
+            font-size: 1.3em;
+            color: #005792; /* Darker blue for better contrast */
+            margin-bottom: 5px;
+        }
+        .doctor-info p {
+            font-size: 0.9em;
+            color: #555;
+            margin: 3px 0;
+        }
+        .contact-link {
+            color: #0077b6;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Meet Our Expert Doctors</h2>
+    
+    <section id="doctor-info-section">
+        <!-- Doctor Cards -->
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. Rahul">
+            <div class="doctor-info">
+                <h3>Dr. Rahul</h3>
+                <p>Orthopedic Surgeon | Knee & Joint Specialist</p>
+                <p>Experience: 10 years</p>
+                <p><a href="tel:+919354711633" class="contact-link">📞 +91 9354711633</a></p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. John Doe">
+            <div class="doctor-info">
+                <h3>Dr. John Doe</h3>
+                <p>General Physician | Internal Medicine</p>
+                <p>Experience: 8 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. Emily Johnson">
+            <div class="doctor-info">
+                <h3>Dr. Emily Johnson</h3>
+                <p>Pediatrician | Child Health Specialist</p>
+                <p>Experience: 7 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. Michael Brown">
+            <div class="doctor-info">
+                <h3>Dr. Michael Brown</h3>
+                <p>Orthopedic Surgeon | Joint Replacement</p>
+                <p>Experience: 12 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. Lisa Taylor">
+            <div class="doctor-info">
+                <h3>Dr. Lisa Taylor</h3>
+                <p>Dermatologist | Skin & Hair Expert</p>
+                <p>Experience: 9 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. David Anderson">
+            <div class="doctor-info">
+                <h3>Dr. David Anderson</h3>
+                <p>Neurologist | Brain & Spine Specialist</p>
+                <p>Experience: 11 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. Sarah Wilson">
+            <div class="doctor-info">
+                <h3>Dr. Sarah Wilson</h3>
+                <p>Obstetrician | Women's Health Specialist</p>
+                <p>Experience: 6 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. Robert Martinez">
+            <div class="doctor-info">
+                <h3>Dr. Robert Martinez</h3>
+                <p>Endocrinologist | Diabetes & Hormones</p>
+                <p>Experience: 13 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. Anna Garcia">
+            <div class="doctor-info">
+                <h3>Dr. Anna Garcia</h3>
+                <p>Psychiatrist | Mental Health Expert</p>
+                <p>Experience: 8 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. James Rodriguez">
+            <div class="doctor-info">
+                <h3>Dr. James Rodriguez</h3>
+                <p>Oncologist | Cancer Treatment Specialist</p>
+                <p>Experience: 15 years</p>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://via.placeholder.com/100" alt="Dr. Olivia White">
+            <div class="doctor-info">
+                <h3>Dr. Olivia White</h3>
+                <p>Dentist | Oral Health Specialist</p>
+                <p>Experience: 5 years</p>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>

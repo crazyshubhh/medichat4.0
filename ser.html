@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Services</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: teal;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005f5f;
+    }
+    canvas {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Health Services</h1>
+    <section id="heart-rate-record">
+      <h2>Heart Rate Record</h2>
+      <canvas id="healthChart" width="400" height="200"></canvas>
+      <div class="form-group">
+        <label for="dateInput">Date:</label>
+        <input type="date" id="dateInput">
+      </div>
+      <div class="form-group">
+        <label for="heartRateInput">Heart Rate (BPM):</label>
+        <input type="number" id="heartRateInput" placeholder="Enter your heart rate">
+      </div>
+      <button id="addDataBtn">Add Data</button>
+      <button id="exportDataBtn">Export Data</button>
+    </section>
+  </div>
+
+  <script>
+    let chartInstance;
+
+    const saveHealthData = (data) => {
+      const existingData = JSON.parse(localStorage.getItem("healthData")) || [];
+      existingData.push(data);
+      localStorage.setItem("healthData", JSON.stringify(existingData));
+    };
+
+    const getHealthData = () => {
+      return JSON.parse(localStorage.getItem("healthData")) || [];
+    };
+
+    const renderGraph = (data) => {
+      const ctx = document.getElementById("healthChart").getContext("2d");
+
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+
+      chartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: data.map((entry) => entry.date),
+          datasets: [
+            {
+              label: "Heart Rate (BPM)",
+              data: data.map((entry) => entry.heartRate),
+              borderColor: "rgba(75, 192, 192, 1)",
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: "top" },
+          },
+          scales: {
+            x: { title: { display: true, text: "Date" } },
+            y: { title: { display: true, text: "Heart Rate (BPM)" } },
+          },
+        },
+      });
+    };
+
+    const updateGraph = () => {
+      const data = getHealthData();
+      renderGraph(data);
+    };
+
+    document.getElementById("addDataBtn").addEventListener("click", () => {
+      const date = document.getElementById("dateInput").value;
+      const heartRate = parseInt(document.getElementById("heartRateInput").value);
+
+      if (date && heartRate) {
+        saveHealthData({ date, heartRate });
+        updateGraph();
+        alert("Data added successfully!");
+      } else {
+        alert("Please fill in all fields.");
+      }
+    });
+
+    document.getElementById("exportDataBtn").addEventListener("click", () => {
+      const data = getHealthData();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "healthData.json";
+      a.click();
+    });
+
+    window.onload = () => updateGraph();
+  </script>
+</body>
+</html>

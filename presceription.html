@@ -1,0 +1,69 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Prescription Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b2dfdb;
+            text-align: center;
+            padding: 20px;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #00796b;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Medical Prescription Form</h2>
+        <label>Patient's Name: <input type="text" id="patientName"></label>
+        <label>Patient's Age: <input type="number" id="patientAge"></label>
+        <label>Treatment: <input type="text" id="treatment"></label>
+        <label>Rx (Medication / Strength / Frequency): <input type="text" id="prescription"></label>
+        <label>Date Signed: <input type="date" id="dateSigned"></label>
+        <button onclick="submitForm()">Submit</button>
+    </div>
+
+    <script>
+        function submitForm() {
+            const patientName = document.getElementById("patientName").value;
+            const patientAge = document.getElementById("patientAge").value;
+            const treatment = document.getElementById("treatment").value;
+            const prescription = document.getElementById("prescription").value;
+            const dateSigned = document.getElementById("dateSigned").value;
+
+            localStorage.setItem("patientName", patientName);
+            localStorage.setItem("patientAge", patientAge);
+            localStorage.setItem("treatment", treatment);
+            localStorage.setItem("prescription", prescription);
+            localStorage.setItem("dateSigned", dateSigned);
+
+            window.location.href = "submit.html";
+        }
+    </script>
+</body>
+</html>
+

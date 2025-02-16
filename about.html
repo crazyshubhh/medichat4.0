@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediChat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #d5f4f9;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .container {
+      margin-top: 80px;
+    }
+
+    .about-section {
+      padding: 60px 20px;
+      background-color: #eef9fb;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 2.5rem;
+      color: #124d58;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .about-section p {
+      font-size: 1.2rem;
+      color: #357b89;
+      line-height: 1.8;
+    }
+
+    .features {
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .features h3 {
+      font-size: 1.8rem;
+      color: #124d58;
+      margin-bottom: 20px;
+    }
+
+    .features ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .features li {
+      font-size: 1.2rem;
+      color: #357b89;
+      margin-bottom: 10px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .features li::before {
+      content: "✔";
+      color: #4ca8b9;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MediChat</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ser.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="c.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="Emer.html">Emergency</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <h2>About MediChat</h2>
+      <p>
+        MediChat is an innovative medical chatbot designed to assist you in addressing a wide range of health-related queries. 
+        Whether you're seeking basic medical advice, reminders for medication, or guidance on finding a doctor, MediChat is your trusted virtual assistant. 
+        Accessible 24/7, it bridges the gap between patients and healthcare solutions, ensuring you're never alone in managing your health.
+      </p>
+
+      <div class="features">
+        <h3>Features of MediChat:</h3>
+        <ul>
+          <li>Instant health advice for common symptoms and conditions.</li>
+          <li>Medication reminders to help you stay on track.</li>
+          <li>Locate nearby clinics, hospitals, or pharmacies with ease.</li>
+          <li>Basic mental health support and self-care tips.</li>
+          <li>AI-powered responses tailored to your questions.</li>
+          <li>Provides information about health trends and preventative care.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-VlwH72QpU9OxdXipfqHHoAwZbZHgZ0yE6mrSR0mFxAdKwGjpB2reNaOpJ8SUgIda" crossorigin="anonymous"></script>
+</body>
+</html>

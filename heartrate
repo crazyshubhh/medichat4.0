@@ -1,0 +1,20 @@
+ <div id="health-graph">
+        <h2>Health Graph</h2>
+        <canvas id="healthChart" width="400" height="200"></canvas>
+        <div>
+          <label>Date: </label>
+          <input type="date" id="dateInput">
+          <label>Heart Rate: </label>
+          <input type="number" id="heartRateInput" placeholder="BPM">
+          <button id="addDataBtn">Add Data</button>
+          <button id="exportDataBtn">Export Data</button>
+        </div>
+      </div>
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="graph.js"></script>
+      <script>
+        // Render the graph on page load
+        window.onload = () => updateGraph();
+      </script>
